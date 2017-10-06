@@ -59,11 +59,11 @@ publish: ## Build locally and publish to registry
 	@printf '\033[33mBuild and Push env-echo\033[0m\n';
 	docker build -t env-echo:$(TAG) ./flask
 	docker tag env-echo:$(TAG) $(REGISTRY):$(TAG)
-	docker publish $(REGISTRY):$(TAG)
+	docker push $(REGISTRY):$(TAG)
 
 	@printf '\033[33mUpdate the latest tag to $(TAG)\033[0m\n';
 	docker tag env-echo:$(TAG) $(REGISTRY):latest
-	docker publish $(REGISTRY):latest
+	docker push $(REGISTRY):latest
 
 deploy: ## Deploy env-echo to Kuberentes
 
