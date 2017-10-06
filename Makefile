@@ -57,15 +57,15 @@ login: ## Log into registry
 publish: ## Build locally and publish to registry
 
 	@printf '\033[33mBuild and Push env-echo\033[0m\n';
-	@echo docker build -t env-echo:$(TAG) ./flask
-	@echo docker tag env-echo:$(TAG) $(REGISTRY):$(TAG)
-	@echo docker publish $(REGISTRY):$(TAG)
+	docker build -t env-echo:$(TAG) ./flask
+	docker tag env-echo:$(TAG) $(REGISTRY):$(TAG)
+	docker publish $(REGISTRY):$(TAG)
 
 	@printf '\033[33mUpdate the latest tag to $(TAG)\033[0m\n';
-	@echo docker tag env-echo:$(TAG) $(REGISTRY):latest
-	@echo docker publish $(REGISTRY):latest
+	docker tag env-echo:$(TAG) $(REGISTRY):latest
+	docker publish $(REGISTRY):latest
 
 deploy: ## Deploy env-echo to Kuberentes
 
 	@printf '\033[33mBuild and Push env-echo\033[0m\n';
-	@echo kubectl apply -f k8s/
+	kubectl apply -f k8s/
