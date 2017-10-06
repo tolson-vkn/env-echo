@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    repo: https://github.com/tolson-vkn/env-echo
+  labels:
+    app: env-echo
+  name: env-echo
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+  selector:
+    app: env-echo

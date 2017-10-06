@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    repo: https://github.com/tolson-vkn/env-echo
+  labels:
+    app: env-echo
+  name: env-echo
+  namespace: default
+spec:
+  replicas: 5
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: env-echo
+    spec: 
+      containers:
+      - image: timmyolson/env-echo:latest
+        name: env-echo
+        ports:
+        - containerPort: 5000
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        resources:
+          limits:
+            cpu: "100m"
+            memory: "50Mi"
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+      restartPolicy: Always
+status: {}
