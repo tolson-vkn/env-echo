@@ -38,3 +38,26 @@ $ curl localhost:5000
 
 Deploy this an it will look much better:
 
+``` bash
+➜  ~ curl 192.168.122.8:32101
+{
+  "META": "Here is some info about this pod", 
+  "NODE_NAME": "seaway01", 
+  "POD_IP": "10.244.1.6", 
+  "POD_NAME": "env-echo-6df8886c66-vlf6k"
+}
+➜  ~ curl 192.168.122.8:32101
+{
+  "META": "Here is some info about this pod", 
+  "NODE_NAME": "seaway01", 
+  "POD_IP": "10.244.1.8", 
+  "POD_NAME": "env-echo-6df8886c66-dlz9f"
+}
+➜  ~ curl 192.168.122.8:32101
+{
+  "META": "Here is some info about this pod", 
+  "NODE_NAME": "seaway02", 
+  "POD_IP": "10.244.0.4", 
+  "POD_NAME": "env-echo-6df8886c66-fcr48"
+}
+```
